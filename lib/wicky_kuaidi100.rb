@@ -2,8 +2,7 @@ require "wicky_kuaidi100/version"
 
 module WickyKuaidi100
   # Your code goes here...
-  def self.connection(nu,com)
-	id = "c37076b4a12923d7"
+  def self.connection(id, nu, com)
 
 	url = URI.parse('http://api.kuaidi100.com/api')
 
@@ -11,8 +10,8 @@ module WickyKuaidi100
 		req = Net::HTTP::Post.new(url.path)
 		req.set_form_data({
 							id:"#{id}",
-				 			com:"#{nu}",
-				 			nu:"#{com}",
+				 			com:"#{com}",
+				 			nu:"#{nu}",
 				 			valicode:"",
 				 			show:"2",
 				 			muti:"1",
@@ -22,6 +21,7 @@ module WickyKuaidi100
 		puts http.request(req).body
 
 		@content = http.request(req).body.force_encoding("UTF-8")
+		puts @content
 	end
   end
 
